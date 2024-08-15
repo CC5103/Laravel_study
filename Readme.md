@@ -1,8 +1,8 @@
 # Laravel 学習
 
-## 1. モデルと DB の作成
+## 1. modles と DB の作成
 
-**1.1 modle 作り方**
+### 1.1 modle 作り方
 
 - app -> Models  
   ここで，`post.php`を例として扱う．
@@ -17,8 +17,8 @@ databaseフォルダの中に作成されます。【本日の日付_create_post
 '''
 ```
 
-- 「マイグレーションファイル」について  
-   database -> migrations
+- 「マイグレーションファイル」の編集
+  database -> migrations
 
 ```php
 
@@ -37,7 +37,7 @@ databaseフォルダの中に作成されます。【本日の日付_create_post
 
 ---
 
-**1.2 Laravel のマイグレーションファイルの内容がデータベースに反映**
+### 1.2 Laravel のマイグレーションファイルの内容がデータベースに反映
 
 - データベースに反映（移行）
 
@@ -55,7 +55,8 @@ php artisan migrate:rollback
 
 ---
 
-**1.3 リレーションの設定**  
+### 1.3 リレーションの設定
+
 `デル間で関係を作る`
 
 > １対多リレーションイメージ  
@@ -106,3 +107,50 @@ Post::class は関連するモデルが Post であることを指定します�
 user_id は posts テーブル内でこのモデルと関連する外部キーの列の名前を指定します．
 '''
 ```
+
+## 2. DB の修正
+
+### 2.1 作成したテーブルの中にカラムを追加する
+
+- app -> Models
+
+```sh
+'''
+php artisan make:migration add_column_カラム名_to_テーブル名_table --table=テーブル名
+'''
+php artisan make:migration add_column_user_id_to_posts_table --table=posts
+'''
+databaseフォルダの中に作成されます。【本日の日付 add_column_user_table_to_posts_table.php】
+'''
+```
+
+- 「マイグレーションファイル」の編集  
+  database -> migrations
+
+```sh
+public function up()
+{
+    Schema::table('posts', function (Blueprint $table) {
+        $table->foreignId('user_id')->after('image');
+    });
+}
+# unsignedBigIntegerは生成されるカラムは外部のキーとして使わないことである．
+# foreignIdは生成されるカラムは外部のキーとして使うことである．
+```
+
+- データベースに反映（移行）
+
+```sh
+# 移行
+php artisan migrate
+```
+
+## 3. Views
+
+resources -> views  
+**blade エンジンのため，ファイルの拡張子は html ではなく，【.blade.php】とします．**  
+**ただし，HTML & Tailwind css で修正**
+
+### 3.1 テンプレートの作成
+
+- 新しい`.blade.php`ファイルで，'!' マークで基本的フォーマットの作成は可能
