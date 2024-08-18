@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Readme.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="laravel-%E5%AD%A6%E7%BF%92">Laravel 学習</h1>
+<h2 id="1-modles-%E3%81%A8-db-%E3%81%AE%E4%BD%9C%E6%88%90">1. modles と DB の作成</h2>
+<h3 id="11-modle-%E4%BD%9C%E3%82%8A%E6%96%B9">1.1 modle 作り方</h3>
+<ul>
+<li>
+<p>app -&gt; Models</p>
+<p><font color=tomato>创建模型</font><br>
+ここで，<code>post.php</code>を例として扱う．</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># モデルファイル &amp; マイグレートファイルの作成</span>
+php artisan make:model Post -m
+<span class="hljs-string">''</span><span class="hljs-string">'
+最後に-mを入れることで、モデルファイル作成時に、マイグレートファイルも同時に作成できます。
+マイグレーションファイルは、データベーステーブルの内容を設定するためのファイルです。
+databaseフォルダの中に作成されます。【本日の日付_create_posts_table.php】
+'</span><span class="hljs-string">''</span>
+</div></code></pre>
+<p><font color=tomato>定义模型</font><br>
+模型类通常继承自 Illuminate\Database\Eloquent\Model。</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-comment">// 模型代码</span>
+}
+</div></code></pre>
+</li>
+<li>
+<p>「マイグレーションファイル」の編集<br>
+database -&gt; migrations<br>
+Eloquent将默认使用<font color=tomato><strong>复数形式的类名作为数据库表名</strong></font></p>
+<blockquote>
+<p>up 方法定义了迁移中要执行的操作，而 down 方法定义了回滚迁移时要执行的操作。</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::create(<span class="hljs-string">'posts'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Blueprint $table)</span> </span>{
+            $table-&gt;id();
+            $table-&gt;string(<span class="hljs-string">'title'</span>);
+            $table-&gt;text(<span class="hljs-string">'body'</span>);
+            $table-&gt;text(<span class="hljs-string">'image'</span>)-&gt;nullable(); <span class="hljs-comment"># 入力なくでもOK</span>
+            $table-&gt;timestamps();
+        });
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::dropIfExists(<span class="hljs-string">'posts'</span>);
+    }
+}
+</div></code></pre>
+</li>
+<li>
+<p>Laravel のマイグレーションファイルの内容がデータベースに反映<br>
+データベースに反映（移行）<br>
+<font color=tomato>数据库迁移</font></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 移行</span>
+php artisan migrate
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="12-%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%83%AD%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF">1.2 データベースロールバック</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># ロールバック</span>
+php artisan migrate:rollback
+</div></code></pre>
+<hr>
+<h3 id="13-eloquent-orm-%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-----models%E3%81%AE%E7%B7%A8%E9%9B%86">1.3 Eloquent ORM エンジン --- Modelsの編集</h3>
+<p><strong>マイグレーションファイルでデータベースを操作する方式</strong><br>
+<strong>Eloquent 模型基础操作</strong></p>
+<p>モデルクラスでは<code>クラス名::メソッド()</code>のように記述してクリエビルダでデータベースを操作します。</p>
+<blockquote>
+<p>用于简化数据库操作。Eloquent允许你使用模型类与数据库表进行交互，每个模型类通常对应一个数据库表。<br>
+Eloquent 提供了一些基本的数据库操作方法，如创建、读取、更新和删除（CRUD）。</p>
+</blockquote>
+<ol>
+<li>
+<p>创建数据<br>
+你可以使用模型的 <code>create</code> 方法来插入数据。确保在模型中定义 <code>fillable</code> 属性，以防止批量赋值漏洞：</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">protected</span> $fillable = [<span class="hljs-string">'title'</span>, <span class="hljs-string">'body'</span>, <span class="hljs-string">'author_name'</span>];
+
+    &lt;!-- Modelの下はリレーションの構築 --&gt;
+    <span class="hljs-comment">#public function user()</span>
+    <span class="hljs-comment">#{</span>
+    <span class="hljs-comment">#    return $this-&gt;belongsTo(User::class, 'user_id');</span>
+    <span class="hljs-comment">#}</span>
+}
+</div></code></pre>
+</li>
+<li>
+<p>读取数据<br>
+你可以使用模型的 <code>all</code> 方法读取所有数据，或使用 <code>find</code> 方法按主键查找数据：</p>
+<pre class="hljs"><code><div>$posts = Post::all();
+
+$post = Post::find(<span class="hljs-number">1</span>);
+</div></code></pre>
+<p>还可以使用查询构建器方法：</p>
+<pre class="hljs"><code><div>$posts = Post::where(<span class="hljs-string">'title'</span>, <span class="hljs-string">'First Post'</span>)-&gt;get();
+</div></code></pre>
+</li>
+<li>
+<p>更新数据<br>
+你可以使用模型实例的 <code>save</code> 方法来更新数据：</p>
+<pre class="hljs"><code><div>$post = Post::find(<span class="hljs-number">1</span>);
+$post-&gt;title = <span class="hljs-string">'Updated Post Title'</span>;
+$post-&gt;save();
+</div></code></pre>
+<p>或者使用 <code>update</code> 方法：</p>
+<pre class="hljs"><code><div>Post::where(<span class="hljs-string">'id'</span>, <span class="hljs-number">1</span>)-&gt;update([<span class="hljs-string">'title'</span> =&gt; <span class="hljs-string">'Updated Post Title'</span>]);
+</div></code></pre>
+</li>
+<li>
+<p>删除数据<br>
+你可以使用模型实例的 <code>delete</code> 方法来删除数据：</p>
+<pre class="hljs"><code><div>$post = Post::find(<span class="hljs-number">1</span>);
+$post-&gt;delete();
+</div></code></pre>
+<p>或者使用 <code>destroy</code> 方法按主键删除数据：</p>
+<pre class="hljs"><code><div>Post::destroy(<span class="hljs-number">1</span>);
+</div></code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="14-%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E6%A7%8B%E7%AF%89">1.4 リレーションの構築</h3>
+<p><code>デル間で関係を作る -&gt; 模型关系</code><br>
+<font color = red>两个表都要做编辑</font></p>
+<p>Eloquent 提供了多种类型的模型关系，包括一对一、一对多和多对多关系。</p>
+<ol>
+<li>
+<p>一对一关系<br>
+一对一关系是指一个模型对应另一个模型。例如，一个用户有一个手机号码。</p>
+<p>创建相关模型：</p>
+<pre class="hljs"><code><div>php artisan make:model User -m
+php artisan make:model Phone -m
+</div></code></pre>
+<p>定义迁移：</p>
+<ul>
+<li>
+<p><code>User.php</code> のマイグレーションファイル</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateUsersTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::create(<span class="hljs-string">'users'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Blueprint $table)</span> </span>{
+            $table-&gt;id();
+            $table-&gt;string(<span class="hljs-string">'name'</span>);
+            $table-&gt;timestamps();
+        });
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::dropIfExists(<span class="hljs-string">'users'</span>);
+    }
+}
+</div></code></pre>
+</li>
+<li>
+<p><code>phone.php</code> のマイグレーションファイル</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreatePhonesTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::create(<span class="hljs-string">'phones'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Blueprint $table)</span> </span>{
+            $table-&gt;id();
+            $table-&gt;string(<span class="hljs-string">'phone_number'</span>);
+            $table-&gt;foreignId(<span class="hljs-string">'user_id'</span>)-&gt;constrained()-&gt;onDelete(<span class="hljs-string">'cascade'</span>);
+            $table-&gt;timestamps();
+        });
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::dropIfExists(<span class="hljs-string">'phones'</span>);
+    }
+}
+</div></code></pre>
+  <font color = tomato>
+  特に、`phone.php`のマイグレーションファイルに
+<blockquote>
+<p>$table-&gt;foreignId('user_id')-&gt;constrained()-&gt;onDelete('cascade');</p>
+</blockquote>
+<ul>
+<li>
+<p>$table<br>
+代表当前正在定义的表格。</p>
+</li>
+<li>
+<p>foreignId('user_id')<br>
+表示创建一个外键字段。指定这个外键字段的名称为'user_id'</p>
+</li>
+<li>
+<p>-&gt;constrained()<br>
+这个方法用于指定外键所引用的目标表格。<br>
+默认情况下，它会尝试引用一个与外键字段同名的表格（例如 users）。
+也可以手动指定目标表格，比如 -&gt;constrained('users')。</p>
+</li>
+<li>
+<p>-&gt;onDelete('cascade')<br>
+这个方法用于定义当被引用表格中的记录被删除时，当前表格中的关联记录应该采取的动作。<br>
+'cascade'：表示当<u>父表（users 表）</u>中的记录被删除时，<u>子表（当前表格）</u>中所有引用该父表记录的子记录也将被级联删除。</p>
+</li>
+</ul>
+  </font>  
+</li>
+</ul>
+<p>运行迁移：</p>
+<pre class="hljs"><code><div>php artisan migrate
+</div></code></pre>
+ <font color = pink>
+ 两个表都要做编辑<br>
+ 父表 hasOne 子表<br>
+ 子表 belongsTo 父表
+ </font>  
+<hr>
+<p>在 <code>User</code> model 中定义关系：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">phone</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;hasOne(Phone::class);
+    }
+}
+</div></code></pre>
+<p>在 <code>Phone</code> model 中定义关系：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Phone</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">user</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;belongsTo(User::class);
+    }
+}
+</div></code></pre>
+</li>
+<li>
+<p>一对多关系<br>
+一对多关系是指一个模型对应多个模型。例如，一个博客文章有多个评论。</p>
+ <font color = pink>
+ 两个表都要做编辑<br>
+ 父表 hasMany 子表<br>
+ 子表 belongsTo 父表
+ </font>  
+<hr>
+<p>在 <code>Post</code> model 中定义关系：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">comments</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;hasMany(Comment::class);
+    }
+}
+</div></code></pre>
+<p>在 <code>Comment</code> model 中定义关系：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;belongsTo(Post::class);
+    }
+}
+</div></code></pre>
+</li>
+<li>
+<p>多对多关系<br>
+多对多关系是指多个模型对应另一个多个模型。例如，一个学生可以参加多个课程，一个课程可以有多个学生。</p>
+<p>创建相关模型：</p>
+<pre class="hljs"><code><div>php artisan make:model Student -m
+php artisan make:model Course -m
+php artisan make:migration create_course_student_table --create=course_student
+</div></code></pre>
+<p>定义迁移：</p>
+<ul>
+<li>
+<p><code>Student.php</code> のマイグレーションファイル</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateStudentsTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::create(<span class="hljs-string">'students'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Blueprint $table)</span> </span>{
+            $table-&gt;id();
+            $table-&gt;string(<span class="hljs-string">'name'</span>);
+            $table-&gt;timestamps();
+        });
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::dropIfExists(<span class="hljs-string">'students'</span>);
+    }
+}
+</div></code></pre>
+</li>
+<li>
+<p><code>Course.php</code> のマイグレーションファイル</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateCoursesTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::create(<span class="hljs-string">'courses'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Blueprint $table)</span> </span>{
+            $table-&gt;id();
+            $table-&gt;string(<span class="hljs-string">'title'</span>);
+            $table-&gt;timestamps();
+        });
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::dropIfExists(<span class="hljs-string">'courses'</span>);
+    }
+}
+</div></code></pre>
+</li>
+<li>
+<p><code>course_student.php</code> のマイグレーションファイル</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateCourseStudentTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::create(<span class="hljs-string">'course_student'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Blueprint $table)</span> </span>{
+            $table-&gt;id();
+            $table-&gt;foreignId(<span class="hljs-string">'student_id'</span>)-&gt;constrained()-&gt;onDelete(<span class="hljs-string">'cascade'</span>);
+            $table-&gt;foreignId(<span class="hljs-string">'course_id'</span>)-&gt;constrained()-&gt;onDelete(<span class="hljs-string">'cascade'</span>);
+            $table-&gt;timestamps();
+        });
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::dropIfExists(<span class="hljs-string">'course_student'</span>);
+    }
+}
+</div></code></pre>
+</li>
+</ul>
+<p>运行迁移：</p>
+<pre class="hljs"><code><div>php artisan migrate
+</div></code></pre>
+<font color = pink>
+两个表都要做编辑<br>
+父表 belongsToMany 子表<br>
+子表 belongsToMany 父表
+</font>  
+<hr>
+<p>在 <code>Student</code> model 中定义关系：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">courses</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;belongsToMany(Course::class);
+    }
+}
+</div></code></pre>
+<p>在 <code>Course</code> model 中定义关系：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Course</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">students</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;belongsToMany(Student::class);
+    }
+}
+</div></code></pre>
+</li>
+</ol>
+<h2 id="2-db-%E3%81%AE%E4%BF%AE%E6%AD%A3">2. DB の修正</h2>
+<h3 id="21-%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9F%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E4%B8%AD%E3%81%AB%E3%82%AB%E3%83%A9%E3%83%A0%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B">2.1 作成したテーブルの中にカラムを追加する</h3>
+<ul>
+<li>
+<p>app -&gt; Models</p>
+<pre class="hljs"><code><div><span class="hljs-string">''</span><span class="hljs-string">'
+php artisan make:migration add_column_カラム名_to_テーブル名_table --table=テーブル名
+'</span><span class="hljs-string">''</span>
+php artisan make:migration add_column_user_id_to_posts_table --table=posts
+<span class="hljs-string">''</span><span class="hljs-string">'
+databaseフォルダの中に作成されます。【本日の日付 add_column_user_table_to_posts_table.php】
+'</span><span class="hljs-string">''</span>
+</div></code></pre>
+</li>
+<li>
+<p>「マイグレーションファイル」の編集<br>
+database -&gt; migrations</p>
+<pre class="hljs"><code><div>public <span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">up</span></span>()
+{
+    Schema::table(<span class="hljs-string">'posts'</span>, <span class="hljs-keyword">function</span> (Blueprint <span class="hljs-variable">$table</span>) {
+        <span class="hljs-variable">$table</span>-&gt;foreignId(<span class="hljs-string">'user_id'</span>)-&gt;after(<span class="hljs-string">'image'</span>);
+    });
+}
+<span class="hljs-comment"># unsignedBigIntegerは生成されるカラムは外部のキーとして使わないことである．</span>
+<span class="hljs-comment"># foreignIdは生成されるカラムは外部のキーとして使うことである．</span>
+</div></code></pre>
+</li>
+<li>
+<p>データベースに反映（移行）</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 移行</span>
+php artisan migrate
+</div></code></pre>
+</li>
+</ul>
+<h2 id="3-views">3. Views</h2>
+<p>resources -&gt; views</p>
+<p><strong>blade エンジンのため，ファイルの拡張子は html ではなく，【.blade.php】とします．</strong><br>
+<strong>ただし，HTML &amp; Tailwind css で修正</strong></p>
+<h3 id="31-%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90">3.1 テンプレートの作成</h3>
+<ul>
+<li>新しい<code>.blade.php</code>ファイルで，'!' マークで基本的フォーマットの作成は可能</li>
+</ul>
+
+</body>
+</html>
